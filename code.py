@@ -40,14 +40,34 @@ lst[0] = 'Time'
 df.columns = lst
 df = df.set_index(df['Time'])
 
-df.head(3)
+print(df.head(3))
+
+
 df_developed = df[['AUSTRALIA', 'NEW ZEALAND', 'UNITED KINGDOM', 'CANADA', 'HONG KONG', 'DENMARK' ,'JAPAN' ,'NORWAY', 'SWEDEN', 'SWITZERLAND', 'TAIWAN']]
 # KOREA IS REMOVED
 df_undeveloped = df[['EURO AREA', 'BRAZIL', 'CHINA', 'INDIA', 'MEXICO', 'SOUTH AFRICA', 'SINGAPORE', 'MALAYSIA', 'SRI LANKA', 'THAILAND']]
-plt.figure()
-plt.plot(df.index, df_developed.mean(axis=1), label='Developed Countries')
-plt.plot(df.index, df_undeveloped.mean(axis=1), label='Developing Countries')
-plt.xlabel('Date')
-plt.ylabel('Mean Ratio')
-plt.title('Difference in the Value of US$ between Developed and Developing Countries')
-plt.legend();
+
+def korea(Include_Korea):
+    if Include_Korea == True:
+        df_developed = df[['AUSTRALIA', 'NEW ZEALAND', 'UNITED KINGDOM', 'CANADA','KOREA', 'HONG KONG', 'DENMARK' ,'JAPAN' ,'NORWAY', 'SWEDEN', 'SWITZERLAND', 'TAIWAN']]
+
+        plt.figure()
+        plt.plot(df.index, df_developed.mean(axis=1), label='Developed Countries')
+        plt.plot(df.index, df_undeveloped.mean(axis=1), label='Developing Countries')
+        plt.xlabel('Date')
+        plt.ylabel('Mean Exchange Rate')
+        plt.title('Difference Exchange Rate per US$ between Developed and Developing Countries')
+        plt.legend();
+        
+    else:
+        df_developed = df[['AUSTRALIA', 'NEW ZEALAND', 'UNITED KINGDOM', 'CANADA', 'HONG KONG', 'DENMARK' ,'JAPAN' ,'NORWAY', 'SWEDEN', 'SWITZERLAND', 'TAIWAN']]
+
+        plt.figure()
+        plt.plot(df.index, df_developed.mean(axis=1), label='Developed Countries')
+        plt.plot(df.index, df_undeveloped.mean(axis=1), label='Developing Countries')
+        plt.xlabel('Date')
+        plt.ylabel('Mean Exchange Rate')
+        plt.title('Difference in Exchange Rates per US$ between Developed and Developing Countries')
+        plt.legend();
+
+interact(korea, Include_Korea=False);
