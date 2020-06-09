@@ -45,7 +45,7 @@ def korea(Include_Korea):
     if Include_Korea == True:
         df_developed = df[['AUSTRALIA', 'NEW ZEALAND', 'UNITED KINGDOM', 'CANADA','KOREA', 'HONG KONG', 'DENMARK' ,'JAPAN' ,'NORWAY', 'SWEDEN', 'SWITZERLAND', 'TAIWAN']]
 
-        plt.figure()
+        plt.figure(figsize=(9.5, 6))
         plt.plot(df.index, df_developed.mean(axis=1), label='Developed Countries')
         plt.plot(df.index, df_undeveloped.mean(axis=1), label='Developing Countries')
         plt.xlabel('Date')
@@ -56,7 +56,7 @@ def korea(Include_Korea):
     else:
         df_developed = df[['AUSTRALIA', 'NEW ZEALAND', 'UNITED KINGDOM', 'CANADA', 'HONG KONG', 'DENMARK' ,'JAPAN' ,'NORWAY', 'SWEDEN', 'SWITZERLAND', 'TAIWAN']]
 
-        plt.figure()
+        plt.figure(figsize=(9.5, 6))
         plt.plot(df.index, df_developed.mean(axis=1), label='Developed Countries')
         plt.plot(df.index, df_undeveloped.mean(axis=1), label='Developing Countries')
         plt.xlabel('Date')
@@ -104,7 +104,7 @@ def interactives(Years, Country1='AUSTRALIA', Country2='NEW ZEALAND'):
         plt.xlabel('Year {}'.format(Years))
         plt.ylabel('Exchange Rate')
         plt.legend()
-        plt.title('Exchange Rate in ()',format(Years))
+        plt.title('Exchange Rate in {}',format(Years))
    
     
 drop_down_menu = ['AUSTRALIA', 'EURO AREA', 'NEW ZEALAND', 'UNITED KINGDOM', 'BRAZIL','CANADA', 'CHINA', 'HONG KONG', 'INDIA', 'KOREA', 'MEXICO', 'SOUTH AFRICA', 'SINGAPORE', 'DENMARK','JAPAN','MALAYSIA', 'NORWAY','SWEDEN','SRI LANKA','SWITZERLAND','TAIWAN','THAILAND']
