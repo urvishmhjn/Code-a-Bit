@@ -77,26 +77,41 @@ colors2 = ['#5bc404', '#9B2335', '#DFCFBE', '#55B4B0', '#E15D44', '#7FCDCD', '#B
 def interactives(Years, Country1='AUSTRALIA', Country2='NEW ZEALAND'):
     plt.figure(figsize=(9.5,6));
     
-    if Years=='ALL':
+    if Years=='ALL' and Country2 != 'NULL':
         plt.plot(df.index, df[Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
         plt.plot(df.index, df[Country2], picker=2, alpha=0.75, color=np.random.choice(colors2), label='{}'.format(Country2));
         plt.title('Comparison Between Two Countries (Interactive Plot)');
         plt.xlabel('Date')
         plt.ylabel('{}\n{}'.format(dic[Country1], dic[Country2]))
         plt.legend()
-    else:
+        
+    elif Years == 'ALL' and Country2 == 'NULL':
+        plt.plot(df.index, df[Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
+        plt.title('Exchange Rate V/S Years')
+        plt.xlabel('Date')
+        plt.ylabel('Exchange Rate')
+        plt.legend()
+    elif Years !='ALL' and Country2 != 'NULL':
         plt.plot(df[Years].index, df[Years][Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
         plt.plot(df[Years].index, df[Years][Country2], picker=2, alpha=0.75, color=np.random.choice(colors2), label='{}'.format(Country2));
         plt.legend()
         plt.title('Comparison Between Two Countries (Interactive Plot)');
         plt.xlabel('Year {}'.format(Years))
         plt.ylabel('{}\n{}'.format(dic[Country1], dic[Country2]))
+        
+    else:
+        plt.plot(df[Years].index, df[Years][Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
+        plt.xlabel('Year {}'.format(Years))
+        plt.ylabel('Exchange Rate')
+        plt.legend()
+        plt.title('Exchange Rate in ()',format(Years))
    
     
 drop_down_menu = ['AUSTRALIA', 'EURO AREA', 'NEW ZEALAND', 'UNITED KINGDOM', 'BRAZIL','CANADA', 'CHINA', 'HONG KONG', 'INDIA', 'KOREA', 'MEXICO', 'SOUTH AFRICA', 'SINGAPORE', 'DENMARK','JAPAN','MALAYSIA', 'NORWAY','SWEDEN','SRI LANKA','SWITZERLAND','TAIWAN','THAILAND']
+drop_down_menu1 = ['NULL', 'AUSTRALIA', 'EURO AREA', 'NEW ZEALAND', 'UNITED KINGDOM', 'BRAZIL','CANADA', 'CHINA', 'HONG KONG', 'INDIA', 'KOREA', 'MEXICO', 'SOUTH AFRICA', 'SINGAPORE', 'DENMARK','JAPAN','MALAYSIA', 'NORWAY','SWEDEN','SRI LANKA','SWITZERLAND','TAIWAN','THAILAND']
 year_menu = ['ALL', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
 
 plt.tight_layout()
-interact(interactives, Country1=drop_down_menu, Years=year_menu, Country2=drop_down_menu);
+interact(interactives, Country1=drop_down_menu, Years=year_menu, Country2=drop_down_menu1);
 
 
