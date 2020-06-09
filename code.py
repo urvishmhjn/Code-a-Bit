@@ -66,4 +66,37 @@ def korea(Include_Korea):
 
 interact(korea, Include_Korea=False);
 
+dic = {}
+for d in [ 'AUSTRALIA - AUSTRALIAN DOLLAR/US$','EURO AREA - EURO/US$', 'NEW ZEALAND - NEW ZELAND DOLLAR/US$','UNITED KINGDOM - UNITED KINGDOM POUND/US$', 'BRAZIL - REAL/US$','CANADA - CANADIAN DOLLAR/US$', 'CHINA - YUAN/US$','HONG KONG - HONG KONG DOLLAR/US$', 'INDIA - INDIAN RUPEE/US$','KOREA - WON/US$', 'MEXICO - MEXICAN PESO/US$','SOUTH AFRICA - RAND/US$', 'SINGAPORE - SINGAPORE DOLLAR/US$','DENMARK - DANISH KRONE/US$', 'JAPAN - YEN/US$','MALAYSIA - RINGGIT/US$', 'NORWAY - NORWEGIAN KRONE/US$','SWEDEN - KRONA/US$', 'SRI LANKA - SRI LANKAN RUPEE/US$','SWITZERLAND - FRANC/US$', 'TAIWAN - NEW TAIWAN DOLLAR/US$','THAILAND - BAHT/US$']:
+    dic[d[:d.find(' - ')]] = d[d.find(' - ')+3:]
+
+# sns.set_style('darkgrid')
+colors1 = ['#ebba34', '#20e8a9', '#208ee8', '#f50035', '#07e03d', '#f7e628', '#cc190c', '#3ac912', '#126ac9']
+colors2 = ['#5bc404', '#9B2335', '#DFCFBE', '#55B4B0', '#E15D44', '#7FCDCD', '#BC243C', '#C3447A', '#98B4D4']
+
+def interactives(Years, Country1='AUSTRALIA', Country2='NEW ZEALAND'):
+    plt.figure(figsize=(9.5,6));
+    
+    if Years=='ALL':
+        plt.plot(df.index, df[Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
+        plt.plot(df.index, df[Country2], picker=2, alpha=0.75, color=np.random.choice(colors2), label='{}'.format(Country2));
+        plt.title('Comparison Between Two Countries (Interactive Plot)');
+        plt.xlabel('Date')
+        plt.ylabel('{}\n{}'.format(dic[Country1], dic[Country2]))
+        plt.legend()
+    else:
+        plt.plot(df[Years].index, df[Years][Country1], picker=2, alpha=0.75, color=np.random.choice(colors1), label='{}'.format(Country1));
+        plt.plot(df[Years].index, df[Years][Country2], picker=2, alpha=0.75, color=np.random.choice(colors2), label='{}'.format(Country2));
+        plt.legend()
+        plt.title('Comparison Between Two Countries (Interactive Plot)');
+        plt.xlabel('Year {}'.format(Years))
+        plt.ylabel('{}\n{}'.format(dic[Country1], dic[Country2]))
+   
+    
+drop_down_menu = ['AUSTRALIA', 'EURO AREA', 'NEW ZEALAND', 'UNITED KINGDOM', 'BRAZIL','CANADA', 'CHINA', 'HONG KONG', 'INDIA', 'KOREA', 'MEXICO', 'SOUTH AFRICA', 'SINGAPORE', 'DENMARK','JAPAN','MALAYSIA', 'NORWAY','SWEDEN','SRI LANKA','SWITZERLAND','TAIWAN','THAILAND']
+year_menu = ['ALL', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+
+plt.tight_layout()
+interact(interactives, Country1=drop_down_menu, Years=year_menu, Country2=drop_down_menu);
+
 
