@@ -1,5 +1,5 @@
 # Code-a-Bit
-This project is a part of a Hackathon.
+This project is a Data Visualization project.
 The dataset on Currency Exchange Rate of different countries is provided.
 The dataset needs to be visualized in the best possible manner(s).
 
